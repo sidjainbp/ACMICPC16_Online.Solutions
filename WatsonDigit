@@ -1,0 +1,28 @@
+import java.util.*;
+import java.math.BigInteger;
+
+public class WatsonDigit {
+    public static void main(String[] args) throws java.lang.Exception{
+        int T, d;
+
+        Scanner sc = new Scanner(System.in);
+
+        T = sc.nextInt();
+        for(int i=0; i<T; i++){
+            d = sc.nextInt();
+            System.out.println(solve(d));
+        }
+        sc.close();
+    }
+
+    static int solve(int d) {
+        StringBuilder sb = new StringBuilder();
+        while (d != 0){
+            int digit = Math.min(d, 9);
+            sb.append(digit);
+            d -= digit;
+        }
+
+        return new BigInteger(sb.reverse().toString()).add(BigInteger.ONE).toString().chars().map(ch -> ch - '0').sum();
+    }
+}
